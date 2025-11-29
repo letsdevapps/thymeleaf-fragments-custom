@@ -1,9 +1,17 @@
 package com.pro.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.pro.model.Product;
+import com.pro.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,9 +20,19 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/search")
 public class SearchController {
 
-	@GetMapping({ "", "/" })
-	public String index(Model model) {
+	@Autowired
+	private ProductService productService;
+	
+	@RequestMapping(value = { "", "/" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public String index(@RequestParam(defaultValue = "", value = "searchText") String searchText,
+			@RequestParam(defaultValue = "0", value = "page") int page, Model model) {
 		log.info("----- Search Controller | Index -----");
+
+		Pageable pageable = PageRequest.of(page, 10);
+		Page<Product> productsPageable;
+
+		model.addAttribute("productList", productService.getProductList());
+
 		return "web/search/search";
 	}
 }

@@ -30,7 +30,29 @@
 	 	<div style="border: 2px solid #000000;">
 		 	<div style="padding-top: 20px"></div>
 			<div class="w3-container" style="min-height: 400px;">
-			    Search Page
+			    <h1>Pesquisa</h1>
+			    	<div class="w3-third">
+   	        			<form th:action="@{/search}" method="post">
+			    			<input id="searchText" name="searchText" type="text" class="w3-input" style="border:2px solid" th:value="*{searchText}" th:placeholder="Produto...">
+    						<button type="submit" class="w3-button w3-border">Pesquisar</button>
+						</form>
+					</div>
+					<div class="w3-twothird">
+						<table id="idTable" class="w3-table-all w3-hoverable">
+							<tr>
+								<th>ID</th>
+								<th>Name</th>
+								<th>Price</th>
+							</tr>
+							<tbody id="idTableBody">
+								<tr th:each="prod : ${productList}">
+									<td><span th:text="${prod.id}"></span></td>
+									<td><span th:text="${prod.name}"></span></td>
+									<td><span th:text="${prod.price}"></span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 		    </div>
 		    <div style="padding-top: 20px;"></div>
 	   	</div>
