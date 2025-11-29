@@ -1,6 +1,5 @@
 FROM maven:latest
 
-#RUN apt-get update && apt-get install maven openjdk-21-jdk -y
 RUN apt-get update -y
 
 WORKDIR /app
