@@ -28,7 +28,7 @@ public class SearchController {
 			@RequestParam(defaultValue = "0", value = "page") int page, Model model) {
 		log.info("----- Search Controller | Index -----");
 
-		Pageable pageable = PageRequest.of(page, 10);
+		Pageable pageable = PageRequest.of(page, 12);
 		Page<Product> productsPageable;
 
 		if (!searchText.isEmpty()) {
