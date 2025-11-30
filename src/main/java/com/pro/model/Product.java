@@ -1,6 +1,10 @@
 package com.pro.model;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,14 +25,21 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
 	@Column(name = "name", nullable = false)
 	private String name;
+
 	@Column(name = "price", nullable = false)
 	private Double price;
+
 	@Column(name = "created_at", nullable = false)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate createdAt;
+
 	@Column(name = "updated_at", nullable = false)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate updatedAt;
+
 	@Column(name = "available", nullable = false)
 	private Boolean available;
 }
