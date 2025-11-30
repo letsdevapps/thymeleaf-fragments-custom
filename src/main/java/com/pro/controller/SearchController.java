@@ -31,7 +31,14 @@ public class SearchController {
 		Pageable pageable = PageRequest.of(page, 10);
 		Page<Product> productsPageable;
 
-		model.addAttribute("productList", productService.getProductList());
+		if (!searchText.isEmpty()) {
+			productsPageable = productService.findByName(searchText, pageable);
+		} else {
+			productsPageable = productService.findAll(pageable);
+		}
+
+		model.addAttribute("searchText", searchText);
+		model.addAttribute("productsPageable", productsPageable);
 
 		return "web/search/search";
 	}

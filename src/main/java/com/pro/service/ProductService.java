@@ -61,6 +61,10 @@ public class ProductService {
 		return productRepository.findById(id).orElseThrow(EntityNotFoundException::new);
 	}
 
+	public List<Product> findAll() {
+		return productRepository.findAll();
+	}
+
 	public Page<Product> findAll(Pageable pageable) {
 		return productRepository.findAll(pageable);
 	}

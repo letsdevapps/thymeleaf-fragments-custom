@@ -29,17 +29,17 @@ public class Product {
 	@Column(name = "name", nullable = false)
 	private String name;
 
-	@Column(name = "price", nullable = false)
+	@Column(name = "price")
 	private Double price;
 
-	@Column(name = "created_at", nullable = false)
+	@Column(name = "created_at")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate createdAt;
 
-	@Column(name = "updated_at", nullable = false)
+	@Column(name = "updated_at")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate updatedAt;
 
-	@Column(name = "available", nullable = false)
+	@Column(name = "available")
 	private Boolean available;
 }

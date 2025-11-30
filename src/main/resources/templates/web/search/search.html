@@ -50,7 +50,7 @@
 								<th>Available</th>
 							</tr>
 							<tbody id="idTableBody">
-								<tr th:each="prod : ${productList}">
+								<tr th:each="prod : ${productsPageable.content}">
 									<td th:text="${prod.id}"></td>
 									<td th:text="${#strings.abbreviate(prod.name, 25)}"></td>
 									<td th:text="${#numbers.formatDecimal(prod.price,3,'POINT',2,'COMMA')}"></td>
@@ -60,6 +60,12 @@
 								</tr>
 							</tbody>
 						</table>
+						<div class="w3-bar w3-margin-top">
+			    			<a th:href="@{/search?(searchText=${searchText},page=0)}" class="w3-button">Primeira</a>
+			    			<a th:href="@{/search?(searchText=${searchText},page=${productsPageable.number - 1})}" th:if="${productsPageable.hasPrevious}" class="w3-button">Anterior</a>
+			    			<a th:href="@{/search?(searchText=${searchText},page=${productsPageable.number + 1})}" th:if="${productsPageable.hasNext}" class="w3-button">Próxima</a>
+			    			<a th:href="@{/search?(searchText=${searchText},page=${productsPageable.totalPages - 1})}" class="w3-button">Última</a>
+						</div>
 					</div>
 				</div>
 		    </div>
