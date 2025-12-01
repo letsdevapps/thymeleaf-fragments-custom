@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pro.model.Product;
+import com.pro.service.LayoutConfigurationService;
 import com.pro.service.ProductService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,14 +22,19 @@ import lombok.extern.slf4j.Slf4j;
 public class SearchController {
 
 	@Autowired
+	private LayoutConfigurationService layoutConfigurationService;
+
+	@Autowired
 	private ProductService productService;
-	
+
 	@RequestMapping(value = { "", "/" }, method = { RequestMethod.GET, RequestMethod.POST })
 	public String index(@RequestParam(defaultValue = "", value = "searchText") String searchText,
 			@RequestParam(defaultValue = "0", value = "page") int page, Model model) {
 		log.info("----- Search Controller | Index -----");
+		String layoutColor = layoutConfigurationService.getColor();
+		model.addAttribute("layoutColor", layoutColor);
 
-		Pageable pageable = PageRequest.of(page, 12);
+		Pageable pageable = PageRequest.of(page, 10);
 		Page<Product> productsPageable;
 
 		if (!searchText.isEmpty()) {

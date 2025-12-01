@@ -31,6 +31,22 @@
 		 	<div style="padding-top: 20px"></div>
 			<div class="w3-container" style="min-height: 400px;">
 			    <h1>Painel</h1>
+			    <h1>Escolha a cor do layout</h1>
+			    <form action="#" th:action="@{/dashboard/layout-color}" method="post">
+			        <div>
+			            <input type="radio" id="cor1" name="cor" value="w3-indigo" th:checked="${layoutColor == 'w3-indigo'}"/>
+			            <label for="cor1">Cor 1 (Indigo)</label>
+			        </div>
+			        <div>
+			            <input type="radio" id="cor2" name="cor" value="w3-deep-orange" th:checked="${layoutColor == 'w3-deep-orange'}"/>
+			            <label for="cor2">Cor 2 (Laranja)</label>
+			        </div>
+			        <div>
+			            <input type="radio" id="cor3" name="cor" value="w3-green" th:checked="${layoutColor == 'w3-green'}"/>
+			            <label for="cor3">Cor 3 (Green)</label>
+			        </div>
+			        <button type="submit">Salvar</button>
+			    </form>
 		    </div>
 		    <div style="padding-top: 20px;"></div>
 	   	</div>

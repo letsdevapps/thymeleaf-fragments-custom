@@ -1,3 +1,7 @@
+CREATE TABLE layout_configuration (
+	color VARCHAR(255)
+);
+
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
