@@ -16,14 +16,43 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-<!-- 	<div id="topnav" th:fragment="topnav" class="w3-indigo"> -->
 	<div id="topnav" th:fragment="topnav" th:class="${layoutColor}">
-		<div class="w3-bar w3-card">
-   			<a th:href="@{/}" class="w3-bar-item w3-button w3-wide"><b>Inicio</b></a>
-   			<a th:href="@{/dashboard}" class="w3-bar-item w3-button w3-wide"><b>Painel</b></a>
-   			<a th:href="@{/search}" class="w3-bar-item w3-button w3-wide"><b>Pesquisa</b></a>
-   			<a th:href="@{/about}" class="w3-bar-item w3-button w3-wide"><b>Sobre</b></a>
-   		</div>
-	</div>
+
+		<nav id="navBar" class="w3-bar w3-card">
+   			<div class="w3-hide-small">
+   				<a th:href="@{/}" class="w3-bar-item w3-button w3-wide"><b>Inicio</b></a>
+   				<a th:href="@{/dashboard}" class="w3-bar-item w3-button w3-wide"><b>Painel</b></a>
+   				<a th:href="@{/search}" class="w3-bar-item w3-button w3-wide"><b>Pesquisa</b></a>
+   				<a th:href="@{/about}" class="w3-bar-item w3-button w3-wide"><b>Sobre</b></a>
+   			</div>
+   			<a href="javascript:void(0)" class="w3-bar-item w3-button w3-hide-large w3-hide-medium" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+   		</nav>
+
+		<nav id="sideBar" class="w3-hide-large w3-hide-medium w3-sidebar w3-bar-block w3-animate-left" style="display:none">
+			<div th:class="${layoutColor}">
+				<a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">X</a>
+		   		<a th:href="@{/}" onclick="w3_close()" class="w3-bar-item w3-button"><b>Inicio</b></a>
+		   		<a th:href="@{/dashboard}" onclick="w3_close()" class="w3-bar-item w3-button"><b>Painel</b></a>
+   				<a th:href="@{/search}" onclick="w3_close()" class="w3-bar-item w3-button"><b>Pesquisa</b></a>
+   				<a th:href="@{/about}" onclick="w3_close()" class="w3-bar-item w3-button"><b>Sobre</b></a>
+   			</div>
+		</nav>
+
+		<script>
+			var mySidebar = document.getElementById("sideBar");
+	
+			function w3_open() {
+	  			if (mySidebar.style.display === 'block') {
+	    			mySidebar.style.display = 'none';
+	  			} else {
+	    			mySidebar.style.display = 'block';
+	  			}
+			}
+	
+			function w3_close() {
+	    		mySidebar.style.display = "none";
+			}
+		</script>
+	</div><!-- fragment topnav -->
 </body>
 </html>
