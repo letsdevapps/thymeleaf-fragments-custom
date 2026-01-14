@@ -30,6 +30,7 @@ public class DashboardController {
 
 	@PostMapping("/layout-color")
 	public String layoutColor(@RequestParam String cor, Model model) {
+		log.info("----- Dashboard Controller | Layout Color -----");
 		String layoutColor = layoutConfigurationService.setColor(cor).getColor();
 		model.addAttribute("layoutColor", layoutColor);
 		return "web/dashboard/dashboard";
